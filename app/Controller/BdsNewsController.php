@@ -59,7 +59,6 @@ class BdsNewsController extends AppController {
 	}
 	
 	public function doSaveBdsNews() {
-		//$bdsNews_id = 1;
 		$this->setInit();
 		if ($this->request->is(array('post', 'put'))) {
 			$data = $this->request->data;
@@ -369,6 +368,8 @@ class BdsNewsController extends AppController {
 					))
 			);
 			$this->set('hinhAnhList', $hinhAnhList);
+//			var_dump($hinhAnhList);
+//			die;
 		}
 	}
 	
@@ -591,13 +592,13 @@ class BdsNewsController extends AppController {
 				
 				if($uploadThisFile){
 					$filename=basename($file_name,$ext);
-					$newFileName=$filename.$ext;				
-					move_uploaded_file($_FILES["files"]["tmp_name"]["HinhAnh"][$key], "Upload/".$newFileName);
+					$newFileName=$BdsNewsId . "_" . $filename . $ext;				
+					move_uploaded_file($_FILES["files"]["tmp_name"]["HinhAnh"][$key], RwsConstant::FULL_BASE_URL_HOST . "/Upload/".$newFileName);
 					
 					//InsertDB
 					$HinhAnh = $this->HinhAnh->create();
 					$HinhAnh['BDS_NEWS_ID'] = $BdsNewsId;
-					$HinhAnh['HINH_ANH_PATH'] = "Upload/".$newFileName;
+					$HinhAnh['HINH_ANH_PATH'] = RwsConstant::FULL_BASE_URL_HOST . "/Upload/".$newFileName;
 					
 					$this->HinhAnh->save($HinhAnh);
 				}

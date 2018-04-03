@@ -4,6 +4,9 @@
 	));
 ?>
 <script type="text/javascript">
+$(function() {
+	fnc_madeAddress();
+});
 function fnc_doGetDistricts() {
 	$('#id_div_flash').empty().hide();
 	$('#id_div_error').empty().hide();
@@ -36,7 +39,7 @@ function fnc_doGetDistricts() {
          });
 			fnc_doGetWards();
 			fnc_doGetStreets();
-			fnc_makeAddress();
+			fnc_madeAddress();
 	    },
 	    error : function (result) {
 	    	openAlertDialog(MESSAGE_ERROR_AJAX);
@@ -74,7 +77,7 @@ function fnc_doGetWards() {
              $('#id_bdsnews_ward_code').append($("<option>").attr('value',this['Ward']['WARD_CODE']).text(this['Ward']['WARD_NAME']));
          });
 			fnc_doGetStreets();
-			fnc_makeAddress();
+			fnc_madeAddress();
 	    },
 	    error : function (result) {
 	    	openAlertDialog(MESSAGE_ERROR_AJAX);
@@ -109,7 +112,7 @@ function fnc_doGetStreets() {
 			{
              $('#id_bdsnews_street_code').append($("<option>").attr('value',this['Street']['STREET_CODE']).text(this['Street']['STREET_NAME']));
          });
-			fnc_makeAddress();
+			fnc_madeAddress();
 	    },
 	    error : function (result) {
 	    	openAlertDialog(MESSAGE_ERROR_AJAX);
@@ -117,7 +120,7 @@ function fnc_doGetStreets() {
 	});
 }
 
-function fnc_makeAddress(){
+function fnc_madeAddress(){
 	var province_name = $('#id_bdsnews_province_code option:selected').text();
 	var district_name = $('#id_bdsnews_district_code option:selected').text();
 	var ward_name = $('#id_bdsnews_ward_code option:selected').text();
@@ -162,15 +165,26 @@ function fnc_makeAddress(){
             <div class="control-group">
                 <label class="control-label">Nguồn:</label>
                 <div class="controls">
-                	<?php 
+                	<?php
+                		$admin = false; 
                 		$option = array();
                 		foreach ($customerlist as $customer){
                 				$option[$customer['TCustomer']['USER_ID']] = $customer['TCustomer']['CUSTOMER_NAME'];
                 		}
+                		$login_user_role = 0 + $this->Session->read('login.user.AUTH_ROLE');
+							if ($this->Session->check(RwsConstant::SESSION_LOGIN_USER_KEY)) {
+								if($login_user_role <= RwsConstant::USER_AUTH_ROLE_SUB){
+									$admin = true;
+									$isDisable = '';	
+								} else {
+									$isDisable = 'disabled';
+								} 
+							}
                 		echo $this->Form->select ( '', $option, array(
                 			'id' => 'id_bdsnews_user_id', 
                 			'name' => 'data[BdsNews][USER_ID]',
-                			'value' => $bdsNews['BdsNews']['USER_ID']
+                			'value' => $bdsNews['BdsNews']['USER_ID'],
+                			 $isDisable
                 		));
                 	?>
                 </div>
@@ -344,12 +358,36 @@ function fnc_makeAddress(){
                                 <li>
                                     <div class="image-wrapper">
                                     <div class="image-container">
-                                       <img alt="<?php echo $hinhAnh['HinhAnh']['HINH_ANH_PATH'];?>" src="<?php echo RwsConstant::FULL_BASE_URL_HOST . "/" . $hinhAnh['HinhAnh']['HINH_ANH_PATH'];?>" width="140"/>                                       
+                                       <img alt="<?php echo $hinhAnh['HinhAnh']['HINH_ANH_PATH'];?>" src="<?php echo $hinhAnh['HinhAnh']['HINH_ANH_PATH'];?>" width="140"/>                     
                                     </div>
                                     </div>
                                     <div class="image-control">
-                                        <label><input type="checkbox" name="chkPublished" id="chkPublished-2166883" value="2166883"> Published</label>
-                                        <label><input type="radio" name="radIsAvatar" id="radIsAvatar-2166883" value="2166883">Avatar</label>
+                                        	<?php			                        				
+			                        				echo $this->Form->input ( '', array (
+																		'name' => 'files[HinhAnh][HINH_ANH_ID_'.$hinhAnh['HinhAnh']['HINH_ANH_ID'].']',
+			                        							'id' => 'files_hinh_anh_hinh_anh_id_'.$hinhAnh['HinhAnh']['HINH_ANH_ID'],
+																		'type' => 'checkbox',
+																		'label' => 'Published',
+																		'div' => false,
+																		'checked' => $hinhAnh['HinhAnh']['PUBLIC_FLG']
+															) );
+			                                ?>
+                                        <?php
+                                        		echo $this->Form->input ( '', array (
+																		'name' => 'files[HinhAnh][HINH_ANH_ID_'.$hinhAnh['HinhAnh']['HINH_ANH_ID'].']',
+			                        							'id' => 'files_hinh_anh_hinh_anh_id_'.$hinhAnh['HinhAnh']['HINH_ANH_ID'],
+																		'type' => 'checkbox',
+																		'label' => 'Published',
+																		'div' => false,
+																		'checked' => $hinhAnh['HinhAnh']['AVATA_FLG']
+															) ); 
+//			                               		echo $this->Form->input('', array(
+//			                        					'name' => 'files[HinhAnh][AVATA_FLG]',
+//			                        					'type'=>'radio',
+//			                        					'label' => 'Avata', 
+//			                        					'checked' => $hinhAnh['HinhAnh']['AVATA_FLG']
+//			                               		));
+			                                ?>
                                     </div>
                                     <div>Xóa hình</div>
                                 </li>
@@ -698,7 +736,7 @@ function fnc_makeAddress(){
 	                			'id' => 'id_bdsnews_street_code', 
 	                			'name' => 'data[BdsNews][STREET_CODE]',
 	                			'class' => 'select-box',
-	                			'onChange' => 'fnc_makeAddress();',
+	                			'onChange' => 'fnc_madeAddress();',
 	                			'value' => $bdsNews['BdsNews']['STREET_CODE']
 	                		));
                 		?>
@@ -716,7 +754,7 @@ function fnc_makeAddress(){
                 			 'type' => 'text',
 							    'label' => false,
                 			 'div' => false,
-                			 'onChange' => 'fnc_makeAddress()',
+                			 'onChange' => 'fnc_madeAddress()',
                 			 'value' => $bdsNews['BdsNews']['SO_NHA']
 							));
 							?>

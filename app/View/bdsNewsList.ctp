@@ -497,12 +497,12 @@ function searchBDS(){
                 <tr>
                     <th scope="col" class="w20 align-center"><input class="selectAll" type="checkbox" value="Properties"></th>
                     <th scope="col" class="w58">Id</th>
-                    <th scope="col" class="w46">Giá (Tỷ)</th>
-                    <th scope="col" class="w46">Số nhà</th>
+                    <th scope="col" class="w60">Giá (Tỷ)</th>
+                    <th scope="col" class="w74">Số nhà</th>
                     <th scope="col" class="w130">Đường</th>
                     <th scope="col" class="w46">Phường</th>
                     <th scope="col" class="w36">Quận</th>
-                    <th scope="col" class="w120">Diện tích</th>
+                    <th scope="col">Diện tích</th>
                     <th scope="col" class="w78">Nhà</th>
                     <th scope="col" class="w20">Hg</th>
                     <th scope="col" class="w58">MT/H</th>
@@ -641,8 +641,8 @@ function searchBDS(){
                         <input class="selectAll" type="checkbox" value="Properties">
                     </th>
                     <th scope="col" class="w58" style="width: 57px;">Id</th>
-                    <th scope="col" class="w30" style="width: 30px;">Giá (Tỷ)</th>
-                    <th scope="col" class="w52" style="width: 53px;">Số nhà</th>
+                    <th scope="col" class="w60" style="width: 39px;">Giá (Tỷ)</th>
+                    <th scope="col" class="w74" style="width: 53px;">Số nhà</th>
                     <th scope="col" class="w130" style="width: 129px;">Đường</th>
                     <th scope="col" class="w46" style="width: 45px;">Phường</th>
                     <th scope="col" class="w36" style="width: 35px;">Quận</th>
@@ -665,8 +665,8 @@ function searchBDS(){
                         <input class="selectAll" type="checkbox" value="Properties">
                     </th>
                     <th scope="col" class="w58" style="width: 57px;">Id</th>
-                    <th scope="col" class="w46" style="width: 46px;">Giá (Tỷ)</th>
-                    <th scope="col" class="w58" style="width: 58px;">Số nhà</th>
+                    <th scope="col" class="w60" style="width: 59px;">Giá (Tỷ)</th>
+                    <th scope="col" class="w74" style="width: 73px;">Số nhà</th>
                     <th scope="col" class="w130" style="width: 129px;">Đường</th>
                     <th scope="col" class="w46" style="width: 45px;">Phường</th>
                     <th scope="col" class="w36" style="width: 35px;">Quận</th>
@@ -688,8 +688,8 @@ function searchBDS(){
                             <input class="selectAll" type="checkbox" value="Properties">
                         </th>
                         <th scope="col" class="w58" style="width: 57px;">Id</th>
-                        <th scope="col" class="w46" style="width: 46px;">Giá (Tỷ)</th>
-                    		<th scope="col" class="w58" style="width: 58px;">Số nhà</th>
+                        <th scope="col" class="w60" style="width: 59px;">Giá (Tỷ)</th>
+                        <th scope="col" class="w74" style="width: 73px;">Số nhà</th>
                         <th scope="col" class="w130" style="width: 130px;">Đường</th>
                         <th scope="col" class="w46" style="width: 45px;">Phường</th>
                         <th scope="col" class="w36" style="width: 35px;">Quận</th>

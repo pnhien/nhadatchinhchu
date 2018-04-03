@@ -79,6 +79,17 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8',
 	);
 
+//	public $default = array(
+//		'datasource' => 'Database/Mysql',
+//		'persistent' => false,
+//		'host' => '103.243.174.10',
+//		'login' => 'nhapholo_admin',
+//		'password' => 'admin123!@#!@',
+//		'database' => 'nhapholo_nplp',
+//		'prefix' => '',
+//		'encoding' => 'utf8',
+//	);
+	
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,

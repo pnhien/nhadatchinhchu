@@ -345,6 +345,21 @@
 														</span>
 													</span>
 												</a></li>
+												<?php 
+												}
+												if($login_user_role <= RwsConstant::USER_AUTH_ROLE_M2){
+												?>
+												<li
+													class="guide-channel guide-notification-item overflowable-list-item "
+													id="UCkwKXIFgDWCJkuTJbkg227A-guide-item"><a
+													class="guide-item yt-uix-sessionlink yt-valign spf-link   "
+													href="<?php echo RwsConstant::FULL_BASE_URL_HOST . "/quyHoach";?>"
+													title="My Channel"> <span class="yt-valign-container"> <span
+															class="thumb guide-my-channel-icon yt-sprite"></span> <span
+															class="display-name  no-count"> <span> <?php echo  $scrFieldLabels['SCR_MENU_QUY_HOACH'];?> </span>
+														</span>
+													</span>
+												</a></li>
 												<br>
 												<br>
 												<br>
