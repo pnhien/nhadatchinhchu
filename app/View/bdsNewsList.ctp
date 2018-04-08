@@ -7,6 +7,14 @@
     #main {
         min-width: 976px;
     }
+    img {
+        height: auto;
+        width: 100px;
+        display: none
+    }
+    .hover-me:hover img {  
+        display: block;
+    }
 </style>
 
 <script type="text/javascript">
@@ -539,7 +547,7 @@ function searchBDS(){
                                 <a class="p-id" href="<?php echo RwsConstant::FULL_BASE_URL_HOST;?>/bdsNews?id=<?php echo $item['BdsNews']['BDSNEWS_ID']; ?>"><?php echo $item['BdsNews']['BDSNEWS_ID']; ?></a>
                             </span>
                             <!-- UserGroup -->
-                                <div><small class="small"><?php echo $item['District']['DISTRICT_NAME']; ?></small></div>
+                                <div><small class="hover-me"><img src="<?php echo $item['BdsNews']['HINH_ANH_PATH']; ?>"</small></div>
                             <!-- AdsVIPRequest -->                            
                         </td>
                         <!-- PriceProposedInVND -->
@@ -570,7 +578,7 @@ function searchBDS(){
                         <!-- District -->
                         <td><?php echo $item['District']['DISTRICT_NAME']; ?></td>
                         <!-- Area -->
-                        <td>
+                        <td style="min-width:130px">
                             <div>DTKV: (<?php echo $item['BdsNews']['DIEN_TICH_RONG'];?>m x <?php echo $item['BdsNews']['DIEN_TICH_DAI']?> m)<br>
                                  DTQH: (<?php echo $item['BdsNews']['DIEN_TICH_QH_RONG'];?>m x <?php echo $item['BdsNews']['DIEN_TICH_QH_DAI']?> m)
                                     <?php 
@@ -611,7 +619,7 @@ function searchBDS(){
                         </td>
                         <!-- UserInfo -->
                         <td class="nowrap">
-                            <div data-toggle="tooltip"><?php echo $item['BdsNews']['LIEN_HE_DOC_QUYEN']; ?></div>
+                        <div data-toggle="tooltip" style="max-width:50px" title="<?php echo $item['BdsNews']['LIEN_HE_DOC_QUYEN']; ?>"><?php echo $item['BdsNews']['LIEN_HE_DOC_QUYEN']; ?></div>
                             <div data-tooltip-content="" style="display:none">
                                 <div><em><strong>Nguồn gần nhất:</strong> <?php echo $item['BdsNews']['USER_UPDATE']; ?> - <strong>Sửa bởi:</strong> <?php echo $item['BdsNews']['USER_UPDATE']; ?> ngày <?php echo $item['BdsNews']['UPDATE_YMD']; ?></em></div>
                                 <div><em><strong>Nguồn đầu tiên:</strong> <?php echo $item['BdsNews']['USER_CREATE']; ?> - <strong>Tạo bởi:</strong> <?php echo $item['BdsNews']['USER_CREATE']; ?> ngày <?php echo $item['BdsNews']['CREATE_YMD']; ?></em></div>
